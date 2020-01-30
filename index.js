@@ -170,6 +170,7 @@ class Student extends Lambdasian{
     this.previousBackground = attributes.previousBackground;
     this.className = attributes.className;
     this.favSubjects = attributes.favSubjects;
+    this.grade = Math.round(Math.random()*100);
   }
   listSubjects(){
     return this.favSubjects.reduce(((a,b) => a.concat(", ", b)),"");
@@ -217,6 +218,19 @@ class ProjectManager extends Instructor{
       + This method, when called, will check the grade of the student and see if they're ready to graduate from Lambda School
       + If the student's grade is above a 70% let them graduate! Otherwise go back to grading their assignments to increase their score.
 */
+Instructor.prototype.gradeStudent = function(student){
+  student.grade += Math.round(Math.random()*(100-student.grade));
+}
+Student.prototype.graduate = function(){
+  console.log("Student grade is ", this.grade);
+  if(this.grade >= 70){
+    return "ready to graduate";
+  } else {
+    return "not ready to graduate, send for grading again";
+    // Instructor.gradeStudent(this);
+    // return this.graduate();
+  }
+}
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
